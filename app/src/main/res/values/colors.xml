@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#FD89F9</color>
+    <color name="light">#FFFFFF</color>
+    <color name="dark">#000000</color>
+    <color name="grey">#808080</color>
+    <color name="grey_light">#D3D3D3</color>
+    <color name="grey_dark">#A9A9A9</color>
+    <color name="green">#008000</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="orange">#FFA500</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="purple">#800080</color>
+    <color name="brown">#A52A2A</color>
+    <color name="light_green">#90EE90</color>
+    <color name="light_blue">#ADD8E6</color>
+    <color name="light_yellow">#FFFFE0</color>
+    <color name="light_orange">#FFDAB9</color>
+    <color name="light_pink">#FFB6C1</color>
+    <color name="light_purple">#E6E6FA</color>
+    <!-- Array of colors that will be used by ViewPager as background colors -->
+    <array name="colorPagesViewPager">
+        <item>#EDD9CF</item>
+        <item>#BED4D6</item>
+        <item>#ADCEB7</item>
+        <item>#F7CF8B</item>
+        <item>#FD96A2</item>
+    </array>
+</resources>

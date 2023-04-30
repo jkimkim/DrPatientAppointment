@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">DrPatientAppointment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_doctor">DoctorActivity</string>
+    <string name="title_activity_patient">PatientActivity</string>
+    <string name="title_activity_doctor_profile">DoctorProfileActivity</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="tel">Tel</string>
+    <string name="birthday">Birthday</string>
+    <string name="full_name">Full Name</string>
+    <string name="google_signin_txt">Or Sign in with Google</string>
+    <string name="signin_btn_clicked">Back to Login</string>
+    <string name="create_account_unclicked">Create Account</string>
+    <string name="my_patients">My Patients</string>
+    <string name="patient_request">Patient Request</string>
+    <string name="my_calendar">My Calendar</string>
+    <string name="how_we_can_help_you_oday">How we can help you today?</string>
+    <string name="appointment">Appointment</string>
+    <string name="signout">SignOut</string>
+    <string name="profile">Profile</string>
+
+    <string-array name="fiche_type">
+        <item>Consultation</item>
+        <item>Hospitalisation</item>
+    </string-array>
+
+    <string-array name="specialty_spinner">
+        <item>Dentist</item>
+        <item>General Medicine</item>
+        <item>ORL</item>
+        <item>Ophthalmology</item>
+        <item>Pediatric</item>
+        <item>Radiology</item>
+        <item>Rheumatology</item>
+    </string-array>
+
+    <string-array name="blood_spinner">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+</resources>
