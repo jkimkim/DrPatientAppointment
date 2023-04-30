@@ -59,6 +59,25 @@ public class MainActivity extends AppCompatActivity {
     // google sign in client
     GoogleSignInClient googleSignInClient;
 
+    public static void exitApp(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the exit button
+        // it will create a dialog to ask if the user wants to exit the app
+        // if yes then the app will exit
+        // if no then the dialog will be dismissed
+        new android.app.AlertDialog.Builder(doctorHomeActivity)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", new android.content.DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(android.content.DialogInterface dialog, int which) {
+                        doctorHomeActivity.finishAffinity();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -249,10 +268,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //on start check if user is logged in
+    //create a loading dialog while checking
     @Override
     public void onStart() {
         super.onStart();
+        android.app.ProgressDialog dialog = new android.app.ProgressDialog(this);
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.setInverseBackgroundForced(false);
+        dialog.show();
+        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+        dialog.dismiss();
     }
 }
