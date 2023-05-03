@@ -12,15 +12,22 @@
         android:theme="@style/Theme.DrPatientAppointment"
         tools:targetApi="31">
         <activity
-            android:name="app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity"
+            android:name=".DoctorAppointmentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DoctorProfileActivity"
             android:exported="false" />
         <activity
-            android:name="app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity"
+            android:name=".DoctorHomeActivity"
             android:exported="false" />
         <activity
-            android:name="app.web.jkimtech.drpatientappointment.controller.HomeActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
-        <activity android:name="app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity" />
+        <activity android:name=".FirstTimeActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

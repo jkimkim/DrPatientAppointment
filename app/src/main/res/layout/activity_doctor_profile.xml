@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:blurkit="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_background2"
     tools:context=".controller.DoctorProfileActivity">
 
@@ -44,11 +45,18 @@
         app:layout_constraintVertical_bias="0.141"
         app:srcCompat="@drawable/profile" />
 
+    <io.alterac.blurkit.BlurLayout
+        android:id="@+id/blur_layout"
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        blurkit:blk_fps="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:background="@drawable/rounded_relativelayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
@@ -114,7 +122,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="65dp"
             android:text="@string/patient"
-            android:textColor="#B9B9B9"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -142,7 +150,7 @@
             android:layout_marginLeft="27dp"
             android:layout_marginTop="293dp"
             android:text="@string/dr_about"
-            android:textColor="#B9B9B9"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="16sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -156,7 +164,7 @@
             android:layout_marginLeft="74dp"
             android:layout_marginTop="116dp"
             android:text="@string/dr_tel"
-            android:textColor="#B9B9B9"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="16sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -170,7 +178,7 @@
             android:layout_marginLeft="75dp"
             android:layout_marginTop="160dp"
             android:text="@string/dr_email"
-            android:textColor="#B9B9B9"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="16sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -184,10 +192,11 @@
             android:layout_marginLeft="75dp"
             android:layout_marginTop="204dp"
             android:text="@string/dr_address"
-            android:textColor="#B9B9B9"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="16sp" />
 
 
     </RelativeLayout>
+    </io.alterac.blurkit.BlurLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
