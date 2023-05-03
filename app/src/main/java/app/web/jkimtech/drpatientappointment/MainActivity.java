@@ -3,6 +3,7 @@ package app.web.jkimtech.drpatientappointment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -116,6 +117,34 @@ public class MainActivity extends AppCompatActivity {
         // it will take the user to the ConfirmedRequests activity
         Intent intent = new Intent(doctorHomeActivity, ConfirmedRequestsActivity.class);
         doctorHomeActivity.startActivity(intent);
+    }
+
+    public static void signOut(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the sign out button
+        // it will sign out the user and take them back to the main activity
+        // it will also clear the activity stack so that the user cannot go back to the previous activity
+        // without signing in again
+        // it will create a dialog to ask if the user wants to sign out and if yes then the user will be signed out
+        // if no then the dialog will be dismissed
+        // a progress dialog will be shown while the user is being signed out
+        ProgressDialog progressDialog = new ProgressDialog(doctorHomeActivity);
+        progressDialog.setMessage("Signing Out...");
+        progressDialog.show();
+        new android.app.AlertDialog.Builder(doctorHomeActivity)
+                .setTitle("Sign Out")
+                .setMessage("Are you sure you want to sign out?")
+                .setPositiveButton("Yes", new android.content.DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(android.content.DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(doctorHomeActivity, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        doctorHomeActivity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 

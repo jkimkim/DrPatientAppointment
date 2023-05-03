@@ -15,6 +15,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
     Button myCalendarBtn;
     Button listPatients;
     Button appointment;
+    Button signOutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         myCalendarBtn = findViewById(R.id.myCalendarBtn);
         listPatients = findViewById(R.id.listPatients);
         appointment = findViewById(R.id.appointment);
+        signOutBtn = findViewById(R.id.signOutBtn);
         // on click listener for profile button
         profile.setOnClickListener(v -> {
             MainActivity.goToProfile(this);
@@ -44,6 +46,10 @@ public class DoctorHomeActivity extends AppCompatActivity {
         // on click listener for appointment button
         appointment.setOnClickListener(v -> {
             MainActivity.goToAppointment(this);
+        });
+        // on click listener for signOutBtn button
+        signOutBtn.setOnClickListener(v -> {
+            MainActivity.signOut(this);
         });
     }
     // on back pressed create a dialog to ask if user wants to exit
