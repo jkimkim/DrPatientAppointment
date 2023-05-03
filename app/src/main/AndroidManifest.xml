@@ -12,22 +12,29 @@
         android:theme="@style/Theme.DrPatientAppointment"
         tools:targetApi="31">
         <activity
-            android:name=".DoctorAppointmentActivity"
+            android:name=".controller.CalenderDoctorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DoctorProfileActivity"
+            android:name=".controller.DoctorAppointmentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".controller.DoctorProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".DoctorHomeActivity"
+            android:name=".controller.DoctorHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".controller.HomeActivity"
             android:exported="false" />
-        <activity android:name=".FirstTimeActivity" />
+        <activity android:name=".controller.FirstTimeActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
