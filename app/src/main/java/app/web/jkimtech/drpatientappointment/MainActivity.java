@@ -35,6 +35,7 @@ import app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity;
 import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
+import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -99,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
         // this method will be called when the user clicks the calendar button
         // it will take the user to the CalenderDoctorActivity
         Intent intent = new Intent(doctorHomeActivity, CalenderDoctorActivity.class);
+        doctorHomeActivity.startActivity(intent);
+    }
+
+    public static void goToListPatients(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the list patients button
+        // it will take the user to MyPatientsActivity
+        Intent intent = new Intent(doctorHomeActivity, MyPatientsActivity.class);
         doctorHomeActivity.startActivity(intent);
     }
 
