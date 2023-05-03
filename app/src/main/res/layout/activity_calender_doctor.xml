@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp"
     tools:context=".controller.CalenderDoctorActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="70dp"
+        android:text="@string/my_calendar_txt"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryLight"/>
+    <devs.mulham.horizontalcalendar.HorizontalCalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:textColorSelected="#FFFF"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycle_time_slot2"
+        android:layout_marginTop="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

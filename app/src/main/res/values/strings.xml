@@ -33,6 +33,7 @@
     <string name="about">About</string>
     <string name="patient">Patient</string>
     <string name="dr_name">Doctor Johnny</string>
+    <string name="my_calendar_txt">My Calendar</string>
 
     <string-array name="fiche_type">
         <item>Consultation</item>
