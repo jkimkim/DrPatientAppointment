@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import app.web.jkimtech.drpatientappointment.controller.CalenderDoctorActivity;
+import app.web.jkimtech.drpatientappointment.controller.ConfirmedRequestsActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorAppointmentActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
@@ -107,6 +108,13 @@ public class MainActivity extends AppCompatActivity {
         // this method will be called when the user clicks the list patients button
         // it will take the user to MyPatientsActivity
         Intent intent = new Intent(doctorHomeActivity, MyPatientsActivity.class);
+        doctorHomeActivity.startActivity(intent);
+    }
+
+    public static void goToAppointment(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the appointment button
+        // it will take the user to the ConfirmedRequests activity
+        Intent intent = new Intent(doctorHomeActivity, ConfirmedRequestsActivity.class);
         doctorHomeActivity.startActivity(intent);
     }
 
