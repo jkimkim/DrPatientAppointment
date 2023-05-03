@@ -60,7 +60,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btnRequst"
+            android:id="@+id/btnRequest"
             android:layout_width="118dp"
             android:layout_height="107dp"
             android:layout_marginTop="32dp"
@@ -220,11 +220,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="19dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnRequst"
-            app:layout_constraintEnd_toEndOf="@+id/btnRequst"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRequest"
+            app:layout_constraintEnd_toEndOf="@+id/btnRequest"
             app:layout_constraintHorizontal_bias="0.476"
-            app:layout_constraintStart_toStartOf="@+id/btnRequst"
-            app:layout_constraintTop_toTopOf="@+id/btnRequst"
+            app:layout_constraintStart_toStartOf="@+id/btnRequest"
+            app:layout_constraintTop_toTopOf="@+id/btnRequest"
             app:layout_constraintVertical_bias="0.403"
             app:srcCompat="@drawable/ic_appointment" />
 

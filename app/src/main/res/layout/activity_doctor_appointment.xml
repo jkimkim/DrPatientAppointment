@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_header_selector"
     tools:context=".controller.DoctorAppointmentActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/DoctorAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

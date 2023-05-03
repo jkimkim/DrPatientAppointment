@@ -29,6 +29,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import app.web.jkimtech.drpatientappointment.controller.DoctorAppointmentActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity;
@@ -79,12 +80,20 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    public static void navigate(DoctorHomeActivity doctorHomeActivity, Class<DoctorProfileActivity> doctorProfileActivityClass) {
-        //this method will be called when the user clicks the profile button
-        //it will navigate the user to the doctor profile activity
-        Intent intent = new Intent(doctorHomeActivity, doctorProfileActivityClass);
+    public static void goToProfile(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the profile button
+        // it will take the user to the profile activity
+        Intent intent = new Intent(doctorHomeActivity, DoctorProfileActivity.class);
         doctorHomeActivity.startActivity(intent);
     }
+
+    public static void goToRequest(DoctorHomeActivity doctorHomeActivity) {
+        // this method will be called when the user clicks the request button
+        // it will take the user to the DoctorAppointmentActivity activity
+        Intent intent = new Intent(doctorHomeActivity, DoctorAppointmentActivity.class);
+        doctorHomeActivity.startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
