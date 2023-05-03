@@ -12,6 +12,20 @@
         android:theme="@style/Theme.DrPatientAppointment"
         tools:targetApi="31">
         <activity
+            android:name=".controller.ConfirmedRequestsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".controller.MyPatientsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".controller.CalenderDoctorActivity"
             android:exported="false">
             <meta-data
