@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity;
+import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity;
 import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
@@ -76,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    public static void navigate(DoctorHomeActivity doctorHomeActivity, Class<DoctorProfileActivity> doctorProfileActivityClass) {
+        //this method will be called when the user clicks the profile button
+        //it will navigate the user to the doctor profile activity
+        Intent intent = new Intent(doctorHomeActivity, doctorProfileActivityClass);
+        doctorHomeActivity.startActivity(intent);
     }
 
     @Override
