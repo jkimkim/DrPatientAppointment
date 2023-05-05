@@ -75,7 +75,7 @@ public class PatientProfileActivity extends AppCompatActivity {
                 doctorName.setText(documentSnapshot.getString("name"));
                 doctorPhone.setText(documentSnapshot.getString("tel"));
                 doctorEmail.setText(documentSnapshot.getString("email"));
-                doctorAddress.setText(documentSnapshot.getString("adresse"));
+                doctorAddress.setText(documentSnapshot.getString("address"));
                 doctorImage.setImageDrawable(defaultImage);
             }
         });
@@ -85,8 +85,6 @@ public class PatientProfileActivity extends AppCompatActivity {
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.logo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Get access to the custom title view
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);

@@ -5,8 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import app.web.jkimtech.drpatientappointment.MainActivity;
 import app.web.jkimtech.drpatientappointment.R;
+import app.web.jkimtech.drpatientappointment.model.Common.Common;
 
 public class HomeActivity extends AppCompatActivity {
     Button searchBtn;
@@ -37,6 +43,13 @@ public class HomeActivity extends AppCompatActivity {
         // on click listener for searchBtn button
         searchBtn.setOnClickListener(v -> {
             MainActivity.goToSearch(this);
+        });
+        Common.CurrentUserid= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        FirebaseFirestore.getInstance().collection("User").document(Common.CurrentUserid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Common.CurrentUserName = documentSnapshot.getString("name");
+            }
         });
     }
     // on back pressed create a dialog to ask if user wants to exit

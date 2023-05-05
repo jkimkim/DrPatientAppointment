@@ -12,12 +12,6 @@
         android:background="@color/cardview_light_background"
         android:padding="8dp">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="98dp"
-            android:layout_toStartOf="@+id/infobtn">
-
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="70dp"
@@ -57,9 +51,7 @@
                 android:maxLines="1"
                 android:text="@string/name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#22BE87" />
-        </RelativeLayout>
-
+                android:textColor="@color/colorPrimaryDark" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"

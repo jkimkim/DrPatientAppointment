@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:blurkit="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_background2"
+    android:background="@drawable/main_header_selector"
     tools:context=".controller.DoctorProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -45,20 +45,14 @@
         app:layout_constraintVertical_bias="0.141"
         app:srcCompat="@drawable/profile" />
 
-    <io.alterac.blurkit.BlurLayout
-        android:id="@+id/blur_layout"
-        android:layout_width="match_parent"
-        android:layout_height="470dp"
-        blurkit:blk_fps="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="470dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:background="@drawable/rounded_relativelayout"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
         <ImageView
@@ -197,6 +191,6 @@
 
 
     </RelativeLayout>
-    </io.alterac.blurkit.BlurLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

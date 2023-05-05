@@ -15,17 +15,5 @@ public class DoctorProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_profile);
-        blurLayout = findViewById(R.id.blur_layout);
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        blurLayout.startBlur();
-    }
-
-    @Override
-    protected void onStop() {
-        blurLayout.pauseBlur();
-        super.onStop();
     }
 }

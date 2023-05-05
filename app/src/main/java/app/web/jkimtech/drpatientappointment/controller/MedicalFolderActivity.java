@@ -53,7 +53,7 @@ public class MedicalFolderActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.imageView2);
         patient_email = getIntent().getStringExtra("patient_email");
         this.configureViewPager();
-        Log.d(TAG, "onCreate dossier medical activity: started");
+        Log.d(TAG, "onCreate medical folder activity: started");
         getIncomingIntent();
 
         createNewFormButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
@@ -114,7 +114,7 @@ public class MedicalFolderActivity extends AppCompatActivity {
 
     private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
-        if (getIntent().hasExtra("patient_name") && getIntent().hasExtra("patient_phone")) {
+        if (getIntent().hasExtra("patient_name") && getIntent().hasExtra("patient_email")) {
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
             patient_name = getIntent().getStringExtra("patient_name");
@@ -122,21 +122,32 @@ public class MedicalFolderActivity extends AppCompatActivity {
             patient_phone = getIntent().getStringExtra("patient_phone");
 
             setPatient(patient_name, patient_phone, patient_email);
-        }else{
+        } else {
             Log.d(TAG, "getIncomingIntent: no intent extras found");
             patRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                    patient_name = documentSnapshot.getString("name");
-                    patient_phone = documentSnapshot.getString("tel");
-                    patient_email = documentSnapshot.getString("email");
+                    if (e != null) {
+                        Log.w(TAG, "listen:error", e);
+                        return;
+                    }
 
-                    //set patient name, email, phone number
-                    setPatient(patient_name, patient_email, patient_phone);
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        Log.d(TAG, "Current data: " + documentSnapshot.getData());
+                        patient_name = documentSnapshot.getString("name");
+                        patient_phone = documentSnapshot.getString("tel");
+                        patient_email = documentSnapshot.getString("email");
+
+                        //set patient name, email, phone number
+                        setPatient(patient_name, patient_email, patient_phone);
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
                 }
             });
         }
     }
+
 
     private void setPatient(String patient_name, String patient_phone, String patient_email) {
         Log.d(TAG, "setPatient: put patient info's");
