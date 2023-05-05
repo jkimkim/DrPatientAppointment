@@ -44,14 +44,14 @@
     <string name="phone">Phone</string>
     <string name="address">Address</string>
 
-    <string-array name="fiche_type">
+    <string-array name="form_type">
         <item>Consultation</item>
         <item>Hospitalisation</item>
     </string-array>
 
     <string-array name="specialty_spinner">
         <item>Dentist</item>
-        <item>General Medicine</item>
+        <item>General practitioner</item>
         <item>ORL</item>
         <item>Ophthalmology</item>
         <item>Pediatric</item>
@@ -69,4 +69,14 @@
         <item>O+</item>
         <item>O-</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
+    <string name="physical_information">physical Information</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="edit">edit</string>
+    <string name="back">back</string>
+    <string name="update_profile">UPDATE PROFILE</string>
+    <string name="edit_my_profile">Edit My Profile</string>
 </resources>
