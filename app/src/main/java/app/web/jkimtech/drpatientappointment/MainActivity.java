@@ -38,6 +38,7 @@ import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity;
 import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
+import app.web.jkimtech.drpatientappointment.controller.SearchActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -164,6 +165,13 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    public static void goToSearch(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the search button
+        // it will take the user to the SearchActivity activity
+        Intent intent = new Intent(homeActivity, SearchActivity.class);
+        homeActivity.startActivity(intent);
     }
 
 
