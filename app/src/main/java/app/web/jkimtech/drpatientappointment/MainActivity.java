@@ -40,6 +40,7 @@ import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.MedicalFolderActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyDoctorsActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
+import app.web.jkimtech.drpatientappointment.controller.PatientProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.SearchActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
 
@@ -188,6 +189,13 @@ public class MainActivity extends AppCompatActivity {
         // it will take the user to the MedicalFolderActivity activity
         Intent intent = new Intent(homeActivity, MedicalFolderActivity.class);
         intent.putExtra("patient_email", FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+        homeActivity.startActivity(intent);
+    }
+
+    public static void goToPatientProfile(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the profile button
+        // it will take the user to the PatientProfileActivity activity
+        Intent intent = new Intent(homeActivity, PatientProfileActivity.class);
         homeActivity.startActivity(intent);
     }
 
