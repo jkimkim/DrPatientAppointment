@@ -147,6 +147,25 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    public static void exitPatientApp(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the exit button
+        // it will create a dialog to ask if the user wants to exit the app
+        // if yes then the app will exit
+        // if no then the dialog will be dismissed
+        new android.app.AlertDialog.Builder(homeActivity)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", new android.content.DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(android.content.DialogInterface dialog, int which) {
+                        homeActivity.finishAffinity();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

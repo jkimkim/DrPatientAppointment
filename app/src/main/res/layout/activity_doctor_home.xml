@@ -47,12 +47,12 @@
 
         <Button
             android:id="@+id/signOutBtn"
-            android:layout_width="154dp"
-            android:layout_height="23dp"
+            android:layout_width="211dp"
+            android:layout_height="48dp"
             android:layout_marginBottom="4dp"
-            android:background="#C62828"
+            android:background="@drawable/button_danger"
             android:text="@string/signout"
-            android:textColor="#ffff"
+            android:textColor="#C62828"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
