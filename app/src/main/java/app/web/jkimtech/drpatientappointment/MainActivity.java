@@ -37,6 +37,7 @@ import app.web.jkimtech.drpatientappointment.controller.DoctorHomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.DoctorProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.FirstTimeActivity;
 import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
+import app.web.jkimtech.drpatientappointment.controller.MedicalFolderActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyDoctorsActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
 import app.web.jkimtech.drpatientappointment.controller.SearchActivity;
@@ -179,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
         // this method will be called when the user clicks the my doctors button
         // it will take the user to the MyDoctorsActivity activity
         Intent intent = new Intent(homeActivity, MyDoctorsActivity.class);
+        homeActivity.startActivity(intent);
+    }
+
+    public static void goToMedicalFolder(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the medical folder button
+        // it will take the user to the MedicalFolderActivity activity
+        Intent intent = new Intent(homeActivity, MedicalFolderActivity.class);
+        intent.putExtra("patient_email", FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
         homeActivity.startActivity(intent);
     }
 

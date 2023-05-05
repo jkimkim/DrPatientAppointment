@@ -51,7 +51,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/button_danger"
-            android:text="@string/signout"
+            android:text="@string/sign_out"
             android:textColor="#C62828"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

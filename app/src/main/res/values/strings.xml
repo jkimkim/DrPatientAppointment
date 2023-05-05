@@ -24,7 +24,7 @@
     <string name="my_calendar">My Calendar</string>
     <string name="how_we_can_help_you_oday">How we can help you today?</string>
     <string name="appointment">Appointment</string>
-    <string name="signout">SignOut</string>
+    <string name="sign_out">SignOut</string>
     <string name="profile">Profile</string>
     <string name="dr_address">Dr Johnny Sins General Medic, 11 Avenue Hell str, Kuzimu</string>
     <string name="dr_email">dr.sins@gmail.com</string>
@@ -34,6 +34,15 @@
     <string name="patient">Patient</string>
     <string name="dr_name">Doctor Johnny</string>
     <string name="my_calendar_txt">My Calendar</string>
+    <string name="medical_folder">Medical Folder</string>
+    <string name="choose_an_option">Choose an option</string>
+    <string name="my_doctors">My Doctors</string>
+    <string name="search">Search</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="todo">TODO</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
 
     <string-array name="fiche_type">
         <item>Consultation</item>

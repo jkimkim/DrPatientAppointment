@@ -11,6 +11,7 @@ import app.web.jkimtech.drpatientappointment.R;
 public class HomeActivity extends AppCompatActivity {
     Button searchBtn;
     Button myDoctors;
+    Button btnMedicalFolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         searchBtn = findViewById(R.id.searchBtn);
         myDoctors = findViewById(R.id.myDoctors);
+        btnMedicalFolder = findViewById(R.id.btnMedicalFolder);
+        // on click listener for btnMedicalFolder button
+        btnMedicalFolder.setOnClickListener(v -> {
+            MainActivity.goToMedicalFolder(this);
+        });
         // on click listener for myDoctors button
         myDoctors.setOnClickListener(v -> {
             MainActivity.goToMyDoctors(this);
