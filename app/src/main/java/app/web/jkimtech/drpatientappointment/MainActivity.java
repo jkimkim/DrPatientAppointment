@@ -40,6 +40,7 @@ import app.web.jkimtech.drpatientappointment.controller.HomeActivity;
 import app.web.jkimtech.drpatientappointment.controller.MedicalFolderActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyDoctorsActivity;
 import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
+import app.web.jkimtech.drpatientappointment.controller.PatientAppointmentActivity;
 import app.web.jkimtech.drpatientappointment.controller.PatientProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.SearchActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
@@ -196,6 +197,13 @@ public class MainActivity extends AppCompatActivity {
         // this method will be called when the user clicks the profile button
         // it will take the user to the PatientProfileActivity activity
         Intent intent = new Intent(homeActivity, PatientProfileActivity.class);
+        homeActivity.startActivity(intent);
+    }
+
+    public static void goToPatientAppointment(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the appointment button
+        // it will take the user to the PatientAppointmentActivity activity
+        Intent intent = new Intent(homeActivity, PatientAppointmentActivity.class);
         homeActivity.startActivity(intent);
     }
 
@@ -405,3 +413,18 @@ public class MainActivity extends AppCompatActivity {
         dialog.dismiss();
     }
 }
+
+// Path: app\src\main\java\app\web\jkimtech\drpatientappointment\controller\EditProfilePatientActivity.java
+// NOTE: this project uses Deprecated Gradle features it is therefore incompatible with Gradle 8.0!
+// NOTE: this file uses the same methods as ProfileDoctorActivity.java to edit the profile and upload the image because the process is the same
+// NOTE: this file uses the same xml file as ProfileDoctorActivity.java to display the patient profile.
+// path: app\src\main\res\layout\activity_doctor_profile.xml
+// path: app\src\main\res\layout\activity_edit_profile_patient.xml
+// NOTE: this is a modified version of ProfilePatientActivity.java from DaktarLagbe project with some to a lot of modification and so are most of the files in this project
+// NOTE: however the design of the app is mostly the same!
+// NOTE: this file and others are modified to fit the purpose of this project
+// NOTE: this file is used to edit the patient profile
+// NOTE: before making any changes to this project, please connect with your firebase account and change the google-services.json file in the app folder
+// NOTE: this project is connected to firebase firestore and firebase storage
+// NOTE: this project is connected to firebase authentication with email and password
+// NOTE: when editing any file, please make sure to change the package name to your own package name.

@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     Button myDoctors;
     Button btnMedicalFolder;
     Button profile;
+    Button appointment2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class HomeActivity extends AppCompatActivity {
         myDoctors = findViewById(R.id.myDoctors);
         btnMedicalFolder = findViewById(R.id.btnMedicalFolder);
         profile = findViewById(R.id.profile);
+        appointment2 = findViewById(R.id.appointment2);
+        // on click listener for appointment2 button
+        appointment2.setOnClickListener(v -> {
+            MainActivity.goToPatientAppointment(this);
+        });
         // on click listener for profile button
         profile.setOnClickListener(v -> {
             MainActivity.goToPatientProfile(this);

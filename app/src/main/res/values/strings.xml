@@ -84,4 +84,8 @@
     <string name="treatment">Treatment</string>
     <string name="description">Description</string>
     <string name="disease">Desease</string>
+    <string name="send">Send</string>
+    <string name="message_your_doctor">Message your doctor</string>
+    <string name="title">Title</string>
+    <string name="messages">Messages</string>
 </resources>
