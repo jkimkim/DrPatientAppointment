@@ -56,7 +56,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         dialog.show();
         // display profile image
         String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("PatientProfile/"+ imageId+".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(uri -> {
             Picasso.get().load(uri)
                     .placeholder(R.mipmap.ic_launcher)

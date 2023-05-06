@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import app.web.jkimtech.drpatientappointment.R;
 import app.web.jkimtech.drpatientappointment.model.Common.Common;
+import app.web.jkimtech.drpatientappointment.model.Form;
 import app.web.jkimtech.drpatientappointment.model.adapter.ConsultationFragmentAdapter;
 
 public class MedicalFolderActivity extends AppCompatActivity {
@@ -75,7 +76,7 @@ public class MedicalFolderActivity extends AppCompatActivity {
         });
 
         String imageId = patient_email+".jpg";
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+imageId);
+        pathReference = FirebaseStorage.getInstance().getReference().child("PatientProfile/"+imageId);
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -105,7 +106,7 @@ public class MedicalFolderActivity extends AppCompatActivity {
 
     private void openPatientForm() {
         Log.d(TAG, "openPatientForm: opening patient form");
-        Intent intent = new Intent(this, MedicalFolderActivity.class);
+        Intent intent = new Intent(this, FormActivity.class);
         intent.putExtra("patient_name", patient_name);
         intent.putExtra("patient_phone", patient_phone);
         intent.putExtra("patient_email", patient_email);

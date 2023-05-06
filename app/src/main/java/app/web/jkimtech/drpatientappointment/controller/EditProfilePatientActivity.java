@@ -67,8 +67,8 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         doctorName = findViewById(R.id.nameText);
         doctorPhone = findViewById(R.id.phoneText);
         doctorAddress = findViewById(R.id.addressText);
-        pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
-        pDatabaseRef = FirebaseDatabase.getInstance().getReference("DoctorProfile");
+        pStorageRef = FirebaseStorage.getInstance().getReference("PatientProfile");
+        pDatabaseRef = FirebaseDatabase.getInstance().getReference("PatientProfile");
         //get the default doctor's information from ProfileDoctorActivity
         Intent intent = getIntent(); //get the current intent
         String current_name = intent.getStringExtra("CURRENT_NAME");
@@ -80,7 +80,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         doctorAddress.setText(current_address);
         //Set the default image
         String userPhotoPath = currentDoctorUID + ".jpg";
-        pathReference = storageRef.child("DoctorProfile/" + userPhotoPath); //Doctor photo in database
+        pathReference = storageRef.child("PatientProfile/" + userPhotoPath); //Doctor photo in database
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

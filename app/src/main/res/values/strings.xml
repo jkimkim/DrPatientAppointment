@@ -79,4 +79,9 @@
     <string name="back">back</string>
     <string name="update_profile">UPDATE PROFILE</string>
     <string name="edit_my_profile">Edit My Profile</string>
+    <string name="add">Add</string>
+    <string name="type">Type</string>
+    <string name="treatment">Treatment</string>
+    <string name="description">Description</string>
+    <string name="disease">Desease</string>
 </resources>
