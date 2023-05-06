@@ -73,7 +73,7 @@ public class MedicalFolderActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 Picasso.get()
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
+                        .placeholder(R.drawable.logo)
                         .fit()
                         .centerCrop()
                         .into(image);//Image location

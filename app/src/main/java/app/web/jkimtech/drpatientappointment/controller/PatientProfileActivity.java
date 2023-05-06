@@ -59,7 +59,7 @@ public class PatientProfileActivity extends AppCompatActivity {
         pathReference = FirebaseStorage.getInstance().getReference().child("PatientProfile/"+ imageId+".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(uri -> {
             Picasso.get().load(uri)
-                    .placeholder(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.logo)
                     .fit()
                     .centerCrop()
                     .into(doctorImage);
