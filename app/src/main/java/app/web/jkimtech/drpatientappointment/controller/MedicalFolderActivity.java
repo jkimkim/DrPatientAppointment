@@ -58,22 +58,13 @@ public class MedicalFolderActivity extends AppCompatActivity {
         getIncomingIntent();
 
         createNewFormButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        createNewFormButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPatientForm();
-            }
-        });
+        createNewFormButton.setOnClickListener(view -> openPatientForm());
         if (Common.CurrentUserType.equals("Patient")) {
             createNewFormButton.setVisibility(View.GONE);
+            Log.d(TAG, "onCreate: patient");
         }
         infobtn = findViewById(R.id.infobtn);
-        infobtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPatientInfo();
-            }
-        });
+        infobtn.setOnClickListener(v -> openPatientInfo());
 
         String imageId = patient_email+".jpg";
         pathReference = FirebaseStorage.getInstance().getReference().child("PatientProfile/"+imageId);

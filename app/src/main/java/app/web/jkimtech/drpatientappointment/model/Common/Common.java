@@ -13,14 +13,14 @@ public class Common {
     public static final String KEY_CONFIRM_BOOKING = "CONFIRM_BOOKING" ;
     public static String CurrentUserid ;
     public static  String CurrentUserName;
-    public static String CurrentUserType = "patient";
+    public static String CurrentUserType = "Patient";
     public static int step = 0;
     public static String CurreentDoctor = "testdoc@testdoc.com";
     public static String Currentaappointementatype;
     public static int currentTimeSlot = -1;
-    public static String CurrentDoctorName = "yassine";
+    public static String CurrentDoctorName = "Johnny Kim";
     public static Calendar currentDate = Calendar.getInstance();
-    public static String CurrentPhone = "062912361255";
+    public static String CurrentPhone = "0734567890";
     public static SimpleDateFormat simpleFormat = new SimpleDateFormat("dd_MM_yyyy");
 
     public static int convertBloodToInt(String s){
