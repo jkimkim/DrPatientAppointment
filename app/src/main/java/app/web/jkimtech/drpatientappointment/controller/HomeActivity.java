@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     Button btnMedicalFolder;
     Button profile;
     Button appointment2;
+    Button signOutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class HomeActivity extends AppCompatActivity {
         btnMedicalFolder = findViewById(R.id.btnMedicalFolder);
         profile = findViewById(R.id.profile);
         appointment2 = findViewById(R.id.appointment2);
+        signOutBtn = findViewById(R.id.signOutBtn);
+        // on click listener for signOutBtn button
+        signOutBtn.setOnClickListener(v -> {
+            MainActivity.signOutPatient(this);
+        });
         // on click listener for appointment2 button
         appointment2.setOnClickListener(v -> {
             MainActivity.goToPatientAppointment(this);

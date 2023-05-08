@@ -3,8 +3,11 @@ package app.web.jkimtech.drpatientappointment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -150,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+        progressDialog.dismiss();
     }
 
     public static void exitPatientApp(HomeActivity homeActivity) {
@@ -206,6 +210,55 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(homeActivity, PatientAppointmentActivity.class);
         homeActivity.startActivity(intent);
     }
+
+    public static void signOutPatient(HomeActivity homeActivity) {
+        // this method will be called when the user clicks the sign out button
+        // it will sign out the user and take them back to the main activity
+        // it will also clear the activity stack so that the user cannot go back to the previous activity
+        // it will create a dialog to ask if the user wants to sign out and if yes then the user will be signed out
+        // if no then the dialog will be dismissed
+        // a progress dialog will be shown while the user is being signed out
+
+        ProgressDialog progressDialog = new ProgressDialog(homeActivity);
+        progressDialog.setMessage("Signing Out...");
+        progressDialog.show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(homeActivity)
+                .setTitle("Sign Out")
+                .setMessage("Are you sure you want to sign out?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(homeActivity, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        homeActivity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", null);
+
+        // set the "Yes" button color to red
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.RED);
+            }
+        });
+
+        // set the "No" button color to green
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.GREEN);
+            }
+        });
+
+        dialog.show();
+        progressDialog.dismiss();
+    }
+
 
 
     @Override
