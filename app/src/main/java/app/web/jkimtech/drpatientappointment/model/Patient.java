@@ -2,7 +2,7 @@ package app.web.jkimtech.drpatientappointment.model;
 
 public class Patient {
     private String name;
-    private String adresse;
+    private String address;
     private String tel;
     private String email;
     private String dateOfBirth;
@@ -15,7 +15,7 @@ public class Patient {
 
     public Patient(String name, String address, String tel, String email, String dateOfBirth, String familySituation) {
         this.name = name;
-        this.adresse = address;
+        this.address = address;
         this.tel = tel;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
@@ -30,12 +30,12 @@ public class Patient {
         this.name = name;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getTel() {

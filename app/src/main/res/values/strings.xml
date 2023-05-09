@@ -88,4 +88,25 @@
     <string name="message_your_doctor">Message your doctor</string>
     <string name="title">Title</string>
     <string name="messages">Messages</string>
+    <string name="add_doctor">Add Doctor</string>
+    <string name="book">BOOK</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="appointment_purpose">Select your appointement purpose</string>
+    <string name="thank_you">Thank you for choosing our service !</string>
+    <string name="appointment_information">Appointment information</string>
+    <string name="time">9:00 - 9:30</string>
+    <string name="available">Available</string>
+    <string name="all">All</string>
+    <string name="general">General</string>
+    <string name="dentist">Dentist</string>
+    <string name="orl">ORL</string>
+    <string name="ophthalmology">Ophthalmology</string>
+    <string name="pediatric">Pediatric</string>
+    <string name="radiology">Radiology</string>
+    <string name="rheumatology">Rheumatology</string>
+    <string name="hospitalisation">Hospitalisation</string>
+    <string name="patient_name">Patient name</string>
+    <string name="_12_06_2020_at_9pm">12/06/2020 at 9pm</string>
+    <string name="status">Status:</string>
 </resources>
