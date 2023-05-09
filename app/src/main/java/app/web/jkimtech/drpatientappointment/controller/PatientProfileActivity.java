@@ -69,15 +69,12 @@ public class PatientProfileActivity extends AppCompatActivity {
             dialog.dismiss();
         });
         // display profile info
-        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                doctorName.setText(documentSnapshot.getString("name"));
-                doctorPhone.setText(documentSnapshot.getString("tel"));
-                doctorEmail.setText(documentSnapshot.getString("email"));
-                doctorAddress.setText(documentSnapshot.getString("address"));
-                doctorImage.setImageDrawable(defaultImage);
-            }
+        docRef.addSnapshotListener(this, (documentSnapshot, e) -> {
+            doctorName.setText(documentSnapshot.getString("name"));
+            doctorPhone.setText(documentSnapshot.getString("tel"));
+            doctorEmail.setText(documentSnapshot.getString("email"));
+            doctorAddress.setText(documentSnapshot.getString("address"));
+            doctorImage.setImageDrawable(defaultImage);
         });
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
