@@ -27,33 +27,43 @@ import app.web.jkimtech.drpatientappointment.controller.ChatActivity;
 import app.web.jkimtech.drpatientappointment.model.Doctor;
 
 public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctorsAdapter.MyDoctorAppointementHolder> {
+    // Reference to the Firebase storage for images
     StorageReference pathReference ;
-
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.
-     * @param options
+     * @param options the FirestoreRecyclerOptions<Doctor> object containing the query to be listened to
      */
     public MyDoctorsAdapter(@NonNull FirestoreRecyclerOptions<Doctor> options) {
         super(options);
     }
 
+    /**
+     * Binds the data from the Doctor object to the layout views of the RecyclerView item
+     * @param myDoctorsHolder the ViewHolder containing the layout views to bind the data to
+     * @param position the position of the item in the RecyclerView
+     * @param doctor the Doctor object containing the data to bind to the layout views
+     */
+
     @Override
     protected void onBindViewHolder(@NonNull MyDoctorAppointementHolder myDoctorsHolder, int position, @NonNull final Doctor doctor) {
+        // Set the text of the title and description views to the name and speciality of the doctor
         myDoctorsHolder.textViewTitle.setText(doctor.getName());
-        myDoctorsHolder.textViewDescription.setText("Specialite : "+doctor.getSpeciality());
+        myDoctorsHolder.textViewDescription.setText("Speciality : "+doctor.getSpeciality());
+        // Set the onClickListener for the send message button to open the ChatActivity with the corresponding doctor
         myDoctorsHolder.sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPage(v.getContext(),doctor);
             }
         });
+        // Set the onClickListener for the call button to open the phone app with the corresponding phone number
         myDoctorsHolder.callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPage(myDoctorsHolder.sendMessageButton.getContext(),doctor.getTel());
             }
         });
-//
+        // Load the profile image for the doctor from Firebase Storage and display it in the ImageView
         String imageId = doctor.getEmail()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -76,11 +86,17 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         });
     }
 
+/**
+ * Opens the phone app with the specified phone number
+ * @param wf the context of the current activity
+ * @param phoneNumber the phone number to call
+ * */
     private void openPage(Context wf, String phoneNumber){
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
         wf.startActivity(intent);
     }
 
+    // Opens the ChatActivity with the specified doctor
     private void openPage(Context wf, Doctor d){
         Intent i = new Intent(wf, ChatActivity.class);
         i.putExtra("key1",d.getEmail()+"_"+ FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
@@ -88,6 +104,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         wf.startActivity(i);
     }
 
+    // Creates a new ViewHolder for the RecyclerView items
     @NonNull
     @Override
     public MyDoctorAppointementHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,6 +112,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         return new MyDoctorAppointementHolder(v);
     }
 
+    // Holds the layout views for the RecyclerView items
     class MyDoctorAppointementHolder extends RecyclerView.ViewHolder{
         //Here we hold the MyDoctorItems
         TextView textViewTitle;
@@ -104,6 +122,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         Button sendMessageButton;
         Button callBtn;
         Button contactButton;
+        // Constructor for the MyDoctorAppointementHolder
         public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.doctor_view_title);
