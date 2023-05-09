@@ -24,7 +24,7 @@
                 android:title="@string/general"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_Dentiste"
+                android:id="@+id/option_Dentist"
                 android:title="@string/dentist"
                 app:showAsAction="ifRoom" />
             <item
@@ -32,19 +32,19 @@
                 android:title="@string/orl"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_Ophtalmologue"
+                android:id="@+id/option_Ophthalmology"
                 android:title="@string/ophthalmology"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_Pédiatre"
+                android:id="@+id/option_Pediatric"
                 android:title="@string/pediatric"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_Radiologue"
+                android:id="@+id/option_Radiology"
                 android:title="@string/radiology"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_Rhumatologue"
+                android:id="@+id/option_Rheumatology"
                 android:title="@string/rheumatology"
                 app:showAsAction="ifRoom" />
 

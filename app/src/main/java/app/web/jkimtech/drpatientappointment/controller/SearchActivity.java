@@ -94,11 +94,11 @@ public class SearchActivity extends AppCompatActivity {
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("General Practitioner");
                 return true;
-            case R.id.option_Dentiste:
+            case R.id.option_Dentist:
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("Dentist");
                 return true;
-            case R.id.option_Ophtalmologue:
+            case R.id.option_Ophthalmology:
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("Ophthalmology");
                 return true;
@@ -106,15 +106,15 @@ public class SearchActivity extends AppCompatActivity {
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("ORL");
                 return true;
-            case R.id.option_Pédiatre:
+            case R.id.option_Pediatric:
                 DoctorAdapterFiltered.specialitySearch = true;
-                adapter.getFilter().filter("Pediatrician");
+                adapter.getFilter().filter("Pediatric");
                 return true;
-            case R.id.option_Radiologue:
+            case R.id.option_Radiology:
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("Radiology");
                 return true;
-            case R.id.option_Rhumatologue:
+            case R.id.option_Rheumatology:
                 DoctorAdapterFiltered.specialitySearch = true;
                 adapter.getFilter().filter("Rheumatology");
                 return true;
