@@ -22,6 +22,11 @@ public class HomeActivity extends AppCompatActivity {
     Button appointment2;
     Button signOutBtn;
 
+    /**
+     * onCreate
+     * @param savedInstanceState - Bundle
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,8 @@ public class HomeActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(v -> {
             MainActivity.goToSearch(this);
         });
+
+        // get current user id
         Common.CurrentUserid= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         FirebaseFirestore.getInstance().collection("User").document(Common.CurrentUserid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
