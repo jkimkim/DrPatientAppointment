@@ -44,8 +44,8 @@ public class PatientInfoActivity extends AppCompatActivity {
 
         FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
                 .document(patient_email).get().addOnSuccessListener(documentSnapshot -> {
-            weightBtn.setText( ""+documentSnapshot.getString("weight"));
-            heightBtn.setText( ""+documentSnapshot.getString("height"));
+            weightBtn.setText(String.format("%s", documentSnapshot.getString("weight")));
+            heightBtn.setText(String.format("%s", documentSnapshot.getString("height")));
             if(documentSnapshot.getString("bloodType") != null)
                 specialistList.setSelection(convertBloodToInt(documentSnapshot.getString("bloodType")));
         });

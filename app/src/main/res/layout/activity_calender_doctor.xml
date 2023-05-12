@@ -5,22 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="4dp"
     tools:context=".controller.CalenderDoctorActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:height="70dp"
+        android:height="60dp"
         android:text="@string/my_calendar_txt"
         android:gravity="center"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:background="@color/colorPrimaryLight"/>
+        android:background="@color/colorPrimaryDark"/>
     <devs.mulham.horizontalcalendar.HorizontalCalendarView
         android:id="@+id/calendarView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryLight"
         app:textColorSelected="#FFFF"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

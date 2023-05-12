@@ -78,7 +78,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                 int slot = Integer.parseInt(slotValue.getSlot().toString());
                 if(slot == position){
                     holder.card_time_slot.setTag(Common.DISABLE_TAG);
-                    holder.card_time_slot.setCardBackgroundColor(context.getResources().getColor(android.R.color.darker_gray));
+                    holder.card_time_slot.setCardBackgroundColor(context.getResources().getColor(R.color.colorAccent));
                     holder.txt_time_slot_description.setText("Full");
                     if(slotValue.getType().equals("Checked"))
                         holder.txt_time_slot_description.setText("Choosen");
@@ -110,7 +110,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                 Log.e("pos ", "onItemSelectedListener: "+position );
                 localBroadcastManager.sendBroadcast(intent);
                 // Set the text of the time slot description TextView to "Choosen"
-                if(Common.CurrentUserType == "doctor" && holder.txt_time_slot_description.getText().equals("Available")){
+                if(Common.CurrentUserType == "Doctor" && holder.txt_time_slot_description.getText().equals("Available")){
                     AlertDialog.Builder alert = new AlertDialog.Builder(holder.card_time_slot.getContext());
                     alert.setTitle("Block");
                     alert.setMessage("Are you sure you want to block?");

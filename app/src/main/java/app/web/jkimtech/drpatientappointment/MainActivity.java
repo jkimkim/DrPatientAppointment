@@ -9,9 +9,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private Button createAccount;
     private EditText confirm;
     SignInButton signInButton;
+    private Button ForgotPass;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference userRef = db.collection("User");
@@ -275,6 +278,13 @@ public class MainActivity extends AppCompatActivity {
         confirm = findViewById(R.id.editText3);
         confirm.setVisibility(confirm.INVISIBLE);
         signInButton = findViewById(R.id.sign_in_button);
+        ForgotPass = findViewById(R.id.ForgotPass);
+ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                showRecoverPasswordDialog();
+            }
+        });
 
         TextView textView = (TextView) signInButton.getChildAt(0);
         textView.setText(R.string.google_signin_txt);
@@ -283,39 +293,36 @@ public class MainActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.editText3);
         confirmPassword.setVisibility(confirmPassword.INVISIBLE);
         btnSignUp = findViewById(R.id.SignUpBtn);
-        btnLogin = findViewById(R.id.LoginBtn);
+        btnLogin = findViewById(R.id.loginBtn);
         createAccount = findViewById(R.id.CreateAccount);
 
-        btnSignUp.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View v) {
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                String confirmPass = confirmPassword.getText().toString();
-                if (!email.isEmpty() && !password.isEmpty() && !confirmPass.isEmpty()) {
-                    if (password.equals(confirmPass)) {
-                        mAuth.createUserWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(MainActivity.this, task -> {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        android.util.Log.d("TAG", "createUserWithEmail:success");
-                                        android.widget.Toast.makeText(MainActivity.this, "Account Created", android.widget.Toast.LENGTH_SHORT).show();
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        updateUI(user);
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        android.util.Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                                        android.widget.Toast.makeText(MainActivity.this, "Authentication failed.",
-                                                android.widget.Toast.LENGTH_SHORT).show();
-                                        updateUI(null);
-                                    }
-                                });
-                    }else {
-                        android.widget.Toast.makeText(MainActivity.this, "Passwords do not match", android.widget.Toast.LENGTH_SHORT).show();
-                    }
+        btnSignUp.setOnClickListener(v -> {
+            String email = etEmail.getText().toString();
+            String password = etPassword.getText().toString();
+            String confirmPass = confirmPassword.getText().toString();
+            if (!email.isEmpty() && !password.isEmpty() && !confirmPass.isEmpty()) {
+                if (password.equals(confirmPass)) {
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(MainActivity.this, task -> {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d("TAG", "createUserWithEmail:success");
+                                    android.widget.Toast.makeText(MainActivity.this, "Account Created", android.widget.Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                    android.widget.Toast.makeText(MainActivity.this, "Authentication failed.",
+                                            android.widget.Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
+                                }
+                            });
                 }else {
-                    android.widget.Toast.makeText(MainActivity.this, "Please fill in all fields", android.widget.Toast.LENGTH_SHORT).show();
+                    android.widget.Toast.makeText(MainActivity.this, "Passwords do not match", android.widget.Toast.LENGTH_SHORT).show();
                 }
+            }else {
+                android.widget.Toast.makeText(MainActivity.this, "Please fill in all fields", android.widget.Toast.LENGTH_SHORT).show();
             }
         });
         // login button
@@ -347,24 +354,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //create account button
-        createAccount.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View v) {
-                etEmail.setText("");
-                etPassword.setText("");
-                if (confirm.getVisibility() == confirm.INVISIBLE){
-                    confirmPassword.setVisibility(confirmPassword.VISIBLE);
-                    btnSignUp.setVisibility(btnSignUp.VISIBLE);
-                    btnLogin.setVisibility(btnLogin.INVISIBLE);
-                    createAccount.setText(R.string.signin_btn_clicked);
-                    confirm.setVisibility(confirm.VISIBLE);
-                }else {
-                    confirmPassword.setVisibility(confirmPassword.INVISIBLE);
-                    btnSignUp.setVisibility(btnSignUp.INVISIBLE);
-                    btnLogin.setVisibility(btnLogin.VISIBLE);
-                    createAccount.setText(R.string.create_account_unclicked);
-                    confirm.setVisibility(confirm.INVISIBLE);
-                }
+        createAccount.setOnClickListener(v -> {
+            etEmail.setText("");
+            etPassword.setText("");
+            if (confirm.getVisibility() == confirm.INVISIBLE){
+                confirmPassword.setVisibility(confirmPassword.VISIBLE);
+                btnSignUp.setVisibility(btnSignUp.VISIBLE);
+                btnLogin.setVisibility(btnLogin.INVISIBLE);
+                createAccount.setText(R.string.signin_btn_clicked);
+                confirm.setVisibility(confirm.VISIBLE);
+                ForgotPass.setVisibility(ForgotPass.INVISIBLE);
+            }else {
+                confirmPassword.setVisibility(confirmPassword.INVISIBLE);
+                btnSignUp.setVisibility(btnSignUp.INVISIBLE);
+                btnLogin.setVisibility(btnLogin.VISIBLE);
+                createAccount.setText(R.string.create_account_unclicked);
+                confirm.setVisibility(confirm.INVISIBLE);
+                ForgotPass.setVisibility(ForgotPass.VISIBLE);
             }
         });
         // google sign in button
@@ -377,6 +383,53 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void showRecoverPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Recover Password");
+        LinearLayout linearLayout = new LinearLayout(this);
+        EditText emailEt = new EditText(this);
+        emailEt.setHint("Email");
+        emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        emailEt.setMinEms(16);
+        linearLayout.addView(emailEt);
+        linearLayout.setPadding(10,10,10,10);
+        builder.setView(linearLayout);
+        builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = emailEt.getText().toString().trim();
+                beginRecovery(email);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+            }
+        });
+        builder.create().show();
+    }
+
+    private void beginRecovery(String email) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Sending email...");
+        progressDialog.show();
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                progressDialog.dismiss();
+                android.widget.Toast.makeText(MainActivity.this, "Email sent", android.widget.Toast.LENGTH_SHORT).show();
+            }else {
+                progressDialog.dismiss();
+                android.widget.Toast.makeText(MainActivity.this, "Failed...", android.widget.Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(e -> {
+            progressDialog.dismiss();
+            android.widget.Toast.makeText(MainActivity.this, ""+e.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+        });
+    }
+
     //google sign in API
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

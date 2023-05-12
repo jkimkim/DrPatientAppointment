@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_header_selector"
-    tools:context=".MainActivity">
+    android:background="@drawable/main_header_selector">
 
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="260dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="180dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:layout_width="133dp"
         android:layout_height="90dp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -30,11 +48,10 @@
         android:text="SIGN UP"
         android:textColor="@color/cardview_light_background"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -49,7 +66,7 @@
         android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/LoginBtn"
+        app:layout_constraintBottom_toTopOf="@+id/ForgotPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,20 +120,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/ForgotPass" />
 
     <Button
-        android:id="@+id/LoginBtn"
+        android:id="@+id/ForgotPass"
         android:layout_width="260dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="180dp"
-        android:background="#5E35B1"
-        android:text="@string/login"
+        android:layout_marginBottom="244dp"
+        android:background="@color/colorAccent"
+        android:text="@string/forgot_password"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -145,3 +162,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
