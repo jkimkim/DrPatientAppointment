@@ -1,7 +1,6 @@
 package app.web.jkimtech.drpatientappointment.model.adapter;
 
 import android.graphics.Color;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -113,9 +108,9 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Appoint
 
         public patientAppointmentsHolder(@NonNull View itemView) {
             super(itemView);
-            dateAppointment = itemView.findViewById(R.id.appointement_date);
+            dateAppointment = itemView.findViewById(R.id.appointment_date);
             patientName = itemView.findViewById(R.id.patient_name);
-            appointementType = itemView.findViewById(R.id.appointement_type);
+            appointementType = itemView.findViewById(R.id.appointment_type);
             type = itemView.findViewById(R.id.type);
             phone = itemView.findViewById(R.id.patient_phone);
             image = itemView.findViewById(R.id.patient_image);

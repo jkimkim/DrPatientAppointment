@@ -135,11 +135,11 @@ public class DoctorAppointmentAdapter extends FirestoreRecyclerAdapter<Apointeme
         ImageView patient_image;
         public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
-            dateAppointement = itemView.findViewById(R.id.appointement_date);
+            dateAppointement = itemView.findViewById(R.id.appointment_date);
             patientName = itemView.findViewById(R.id.patient_name);
             approveBtn = itemView.findViewById(R.id.btn_accept);
             cancelBtn = itemView.findViewById(R.id.btn_decline);
-            appointementType = itemView.findViewById(R.id.appointement_type);
+            appointementType = itemView.findViewById(R.id.appointment_type);
             patient_image = itemView.findViewById(R.id.patient_image);
         }
     }

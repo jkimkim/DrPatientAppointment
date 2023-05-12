@@ -33,7 +33,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         });
         // on click listener for request button
         btnRequest.setOnClickListener(v -> {
-            MainActivity.goToRequest(this);
+            MainActivity.goToAppointment(this);
         });
         // on click listener for myCalendarBtn button
         myCalendarBtn.setOnClickListener(v -> {
@@ -45,7 +45,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         });
         // on click listener for appointment button
         appointment.setOnClickListener(v -> {
-            MainActivity.goToAppointment(this);
+            MainActivity.goToRequest(this);
         });
         // on click listener for signOutBtn button
         signOutBtn.setOnClickListener(v -> {
