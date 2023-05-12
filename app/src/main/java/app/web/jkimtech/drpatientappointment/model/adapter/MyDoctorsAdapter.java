@@ -48,7 +48,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
     protected void onBindViewHolder(@NonNull MyDoctorAppointementHolder myDoctorsHolder, int position, @NonNull final Doctor doctor) {
         // Set the text of the title and description views to the name and speciality of the doctor
         myDoctorsHolder.textViewTitle.setText(doctor.getName());
-        myDoctorsHolder.textViewDescription.setText("Speciality : "+doctor.getSpeciality());
+        myDoctorsHolder.textViewDescription.setText(String.format("Speciality : %s", doctor.getSpeciality()));
         // Set the onClickListener for the send message button to open the ChatActivity with the corresponding doctor
         myDoctorsHolder.sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,18 +66,15 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         // Load the profile image for the doctor from Firebase Storage and display it in the ImageView
         String imageId = doctor.getEmail()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
-        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get()
-                        .load(uri)
-                        .placeholder(R.drawable.logo)
-                        .fit()
-                        .centerCrop()
-                        .into(myDoctorsHolder.imageViewDoctor);//Image location
+        pathReference.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get()
+                    .load(uri)
+                    .placeholder(R.drawable.logo)
+                    .fit()
+                    .centerCrop()
+                    .into(myDoctorsHolder.imageViewDoctor);//Image location
 
-                // profileImage.setImageURI(uri);
-            }
+            // profileImage.setImageURI(uri);
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {

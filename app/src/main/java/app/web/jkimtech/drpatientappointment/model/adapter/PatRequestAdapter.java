@@ -58,50 +58,44 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                 // Convert the retrieved document to a Doctor object
-                final Doctor onligneDoc = documentSnapshot.toObject(Doctor.class);
+                final Doctor onlineDoc = documentSnapshot.toObject(Doctor.class);
 
                 // Retrieve the Patient object associated with the current Request from the database
-                db.collection("Patient").document(idPat).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                db.collection("Patient").document(idPat).get().addOnSuccessListener(documentSnapshot12 -> {
 
-                        // Convert the retrieved document to a Patient object
-                        final Patient pat= documentSnapshot.toObject(Patient.class);
+                    // Convert the retrieved document to a Patient object
+                    final Patient pat= documentSnapshot12.toObject(Patient.class);
 
-                        // Set the title and description of the current Request item in the RecyclerView
-                        RequestHolder.title.setText(pat.getName());
-                        RequestHolder.specialite.setText("Want to be your patient");
+                    // Set the title and description of the current Request item in the RecyclerView
+                    RequestHolder.title.setText(pat.getName());
+                    RequestHolder.specialite.setText(R.string.want_to_be_your_patient);
 
-                        // Set an onClickListener for the "Add" button to add the current Patient to the current Doctor's list of patients
-                        RequestHolder.addDoc.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(final View v) {
+                    // Set an onClickListener for the "Add" button to add the current Patient to the current Doctor's list of patients
+                    RequestHolder.addDoc.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View v) {
 
-                                // Add the current Doctor to the current Patient's list of doctors in the database
-                                db.collection("Patient").document(idPat).collection("MyDoctors").document(idDoc).set(onligneDoc);
+                            // Add the current Doctor to the current Patient's list of doctors in the database
+                            db.collection("Patient").document(idPat).collection("MyDoctors").document(idDoc).set(onlineDoc);
 
-                                // Add the current Patient to the current Doctor's list of patients in the database
-                                db.collection("Doctor").document(idDoc+"").collection("MyPatients").document(idPat).set(pat);
+                            // Add the current Patient to the current Doctor's list of patients in the database
+                            db.collection("Doctor").document(idDoc+"").collection("MyPatients").document(idPat).set(pat);
 
-                                // Delete the current Request from the "Request" collection in the database
-                                addRequest.whereEqualTo("id_doctor",idDoc+"").whereEqualTo("id_patient",idPat+"").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                        for (QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
-                                            addRequest.document(documentSnapshot1.getId()).delete();
-                                        }
-                                    }
-                                });
+                            // Delete the current Request from the "Request" collection in the database
+                            addRequest.whereEqualTo("id_doctor",idDoc+"").whereEqualTo("id_patient",idPat+"").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                                for (QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots){
+                                    addRequest.document(documentSnapshot1.getId()).delete();
+                                }
+                            });
 
-                                // Update the "choosen" field of the current appointment in the database to indicate that it has been chosen
-                                db.document(HourPath).update("choosen","true");
+                            // Update the "choosen" field of the current appointment in the database to indicate that it has been chosen
+                            db.document(HourPath).update("choosen","true");
 
-                                // Display a message indicating that the patient has been added and hide the "Add" button
-                                Snackbar.make(t, "Patient added", Snackbar.LENGTH_SHORT).show();
-                                RequestHolder.addDoc.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
+                            // Display a message indicating that the patient has been added and hide the "Add" button
+                            Snackbar.make(t, "Patient added", Snackbar.LENGTH_SHORT).show();
+                            RequestHolder.addDoc.setVisibility(View.INVISIBLE);
+                        }
+                    });
                 });
             }
         });

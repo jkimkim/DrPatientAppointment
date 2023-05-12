@@ -53,7 +53,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Appoint
         // Set the appointment status
         patientAppointmentsHolder.type.setText(apointementInformation.getType());
         String doctorEmail = apointementInformation.getDoctorId();
-        Log.d("docotr email", doctorEmail);
+        Log.d("doctor email", doctorEmail);
         // Get the doctor's phone number from Firestore
         docRef = db.collection("Doctor").document("" + doctorEmail + "");
         docRef.get().addOnCompleteListener(task -> {

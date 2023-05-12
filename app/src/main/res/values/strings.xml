@@ -110,4 +110,10 @@
     <string name="_12_06_2020_at_9pm">12/06/2020 at 9pm</string>
     <string name="status">Status:</string>
     <string name="about_me">about me</string>
+    <string name="consultation">Consultation</string>
+    <string name="_23_06_20_at_9pm">23/06/20 at 9pm</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="_0652167895">0652167895</string>
+    <string name="want_to_be_your_patient">Want to be your patient</string>
 </resources>

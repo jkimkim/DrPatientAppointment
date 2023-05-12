@@ -111,7 +111,7 @@ public class BookingStep3Fragment extends Fragment {
     private void setData() {
         txt_booking_berber_text.setText(Common.CurrentDoctorName);
         txt_booking_time_text.setText(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
-                .append("at")
+                .append(" on ")
                 .append(simpleDateFormat.format(Common.currentDate.getTime())));
         txt_booking_phone.setText(Common.CurrentPhone);
         txt_booking_type.setText(Common.Currentaappointementatype);
