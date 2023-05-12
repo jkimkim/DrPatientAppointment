@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLighter"
     tools:context=".controller.EditProfileDoctorActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -47,6 +48,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        android:background="@drawable/background_top_radius"
         app:layout_constraintVertical_bias="0.438">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -72,7 +76,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:background="@drawable/background_top_radius"
         app:layout_constraintStart_toStartOf="parent"
+        app:boxCornerRadiusTopStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintVertical_bias="0.144">
 
@@ -101,6 +108,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:boxCornerRadiusTopStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
+        android:background="@drawable/background_top_radius"
         app:layout_constraintTop_toBottomOf="@+id/phone"
         app:layout_constraintVertical_bias="0.224">
 
@@ -123,6 +133,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.172" />
+    <!-- about me textfield max 200 characters -->
+   <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/about_me"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+         android:layout_marginStart="32dp"
+         android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="@string/about_me"
+            android:textColorHint="@color/colorPrimaryLight"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+       android:background="@drawable/background_top_radius"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address"
+            app:layout_constraintVertical_bias="0.304">
+       <com.google.android.material.textfield.TextInputEditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+              android:inputType="textMultiLine"
+              android:maxLines="5"
+                android:maxLength="200"
+                android:id="@+id/about_meText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/update"
@@ -137,7 +177,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address" />
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/about_me" />
 
     <ImageButton
         android:id="@+id/select_image"

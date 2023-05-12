@@ -109,4 +109,5 @@
     <string name="patient_name">Patient name</string>
     <string name="_12_06_2020_at_9pm">12/06/2020 at 9pm</string>
     <string name="status">Status:</string>
+    <string name="about_me">about me</string>
 </resources>

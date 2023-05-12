@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -45,6 +46,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private TextInputEditText doctorEmail;
     private TextInputEditText doctorPhone;
     private TextInputEditText doctorAddress;
+    private TextInputEditText doctorAbout;
     final String currentDoctorUID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     private Uri uriImage;
@@ -69,15 +71,18 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         doctorAddress = findViewById(R.id.addressText);
         pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
         pDatabaseRef = FirebaseDatabase.getInstance().getReference("DoctorProfile");
+        doctorAbout = findViewById(R.id.about_meText);
         //get the default doctor's information from ProfileDoctorActivity
         Intent intent = getIntent(); //get the current intent
         String current_name = intent.getStringExtra("CURRENT_NAME");
         String current_phone = intent.getStringExtra("CURRENT_PHONE");
         String current_address = intent.getStringExtra("CURRENT_ADDRESS");
+        String current_about = intent.getStringExtra("CURRENT_ABOUT");
         //Set the default information in the text fields
         doctorName.setText(current_name);
         doctorPhone.setText(current_phone);
         doctorAddress.setText(current_address);
+        doctorAbout.setText(current_about);
         //Set the default image
         String userPhotoPath = currentDoctorUID + ".jpg";
         pathReference = storageRef.child("DoctorProfile/" + userPhotoPath); //Doctor photo in database
@@ -96,44 +101,39 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Toast.makeText(EditProfileDoctorActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
         //Select image from gallery
-        selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFileChooser();
-
-            }
-        });
-        updateProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String updateAddress = doctorAddress.getText().toString();
-                String updateName = doctorName.getText().toString();
-                //String updateEmail = doctorEmail.getText().toString();
-                String updatePhone = doctorPhone.getText().toString();
-                uploadProfileImage();
-                updateDoctorInfo(updateName, updateAddress, updatePhone);
-            }
+        selectImage.setOnClickListener(view -> openFileChooser());
+        updateProfile.setOnClickListener(view -> {
+            String updateAddress = doctorAddress.getText().toString();
+            String updateName = doctorName.getText().toString();
+            //String updateEmail = doctorEmail.getText().toString();
+            String updatePhone = doctorPhone.getText().toString();
+            String updateAbout = doctorAbout.getText().toString();
+            uploadProfileImage();
+            updateDoctorInfo(updateName, updateAddress, updatePhone, updateAbout);
         });
     }
     // update the doctor's information in the database
-    private void updateDoctorInfo(String name, String address, String phone)
+    private void updateDoctorInfo(String name, String address, String phone, String updateAbout)
     {
         DocumentReference doctorReference = doctorRef.collection("Doctor").document("" + doctorID + "");
         doctorReference.update("name", name);
         doctorReference.update("address", address);
+        doctorReference.update("about", updateAbout);
         doctorReference.update("phone", phone)
                 .addOnSuccessListener(
-                        new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(EditProfileDoctorActivity.this, "Profile Updated", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(EditProfileDoctorActivity.this, PatientProfileActivity.class);
-                                startActivity(intent);
-                            }
+                        aVoid -> {
+                            Toast.makeText(EditProfileDoctorActivity.this, "Profile Updated", Toast.LENGTH_LONG).show();
+                            // wait for all the information and image to be updated
+                            // show the updated information in the ProfileDoctorActivity
+                            Intent intent = new Intent(EditProfileDoctorActivity.this, DoctorProfileActivity.class);
+                            intent.putExtra("UPDATED_NAME", name);
+                            intent.putExtra("UPDATED_ADDRESS", address);
+                            intent.putExtra("UPDATED_PHONE", phone);
+                            intent.putExtra("UPDATED_ABOUT", updateAbout);
+                            startActivity(intent);
                         }
                 ).addOnFailureListener(
                         e -> Toast.makeText(EditProfileDoctorActivity.this, "Profile Update Failed", Toast.LENGTH_LONG).show()
@@ -179,7 +179,15 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         );
     }
     // upload the image to the database
+    // show a progress bar while the image is uploading to the database
+    // go to the ProfileDoctorActivity after the image is uploaded
+    // show the updated information in the ProfileDoctorActivity
     private void uploadProfileImage() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
+        // Set the progress dialog box title and message
+        // and show the progress dialog box and show the percentage of the image upload progress
         // Check if the selected image is not null
         if (uriImage != null) {
             // Create a reference to the storage location where the image will be uploaded
@@ -188,37 +196,38 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
 
             // Upload the image to the storage location
             // Use the 'continueWithTask' method to chain a continuation task that retrieves the download URL
-            storageReference.putFile(uriImage).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        // If the upload task was not successful, throw an exception to stop the continuation
-                        throw task.getException();
-                    }
-                    // If the upload task was successful, return a task that retrieves the download URL
-                    return pStorageRef.getDownloadUrl();
+            storageReference.putFile(uriImage).continueWithTask(task -> {
+                if (!task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    // If the upload task was not successful, throw an exception to stop the continuation
+                    throw task.getException();
                 }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @SuppressLint("LongLogTag")
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        // If the download URL retrieval task was successful, get the download URL from the result
-                        Uri downloadUri = task.getResult();
-                        Log.e(TAG, "then: " + downloadUri.toString());
+                // If the upload task was successful, return a task that retrieves the download URL
+                return pStorageRef.getDownloadUrl();
+            }).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // If the download URL retrieval task was successful, get the download URL from the result
+                    Uri downloadUri = task.getResult();
+                    Log.e(TAG, "then: " + downloadUri.toString());
 
-                        // Create a new UploadImage object with the currentDoctorUID and the download URL
-                        UploadImage upload = new UploadImage(currentDoctorUID, downloadUri.toString());
+                    // Create a new UploadImage object with the currentDoctorUID and the download URL
+                    UploadImage upload = new UploadImage(currentDoctorUID, downloadUri.toString());
 
-                        // Upload the UploadImage object to the database
-                        pDatabaseRef.push().setValue(upload);
-
-                        // TODO: Add code here to update the user's profile with the new image
-                        // For now we'll just display the image in the ImageView
-                    } else {
-                        // If the download URL retrieval task was not successful, show an error message
-                        Toast.makeText(EditProfileDoctorActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                    // Upload the UploadImage object to the database
+                    pDatabaseRef.push().setValue(upload);
+                    // wait for all the information and image to be updated
+                    // show the updated information in the ProfileDoctorActivity
+                    Intent intent = new Intent(EditProfileDoctorActivity.this, DoctorProfileActivity.class);
+                    intent.putExtra("UPDATED_NAME", doctorName.getText().toString());
+                    intent.putExtra("UPDATED_ADDRESS", doctorAddress.getText().toString());
+                    intent.putExtra("UPDATED_PHONE", doctorPhone.getText().toString());
+                    intent.putExtra("UPDATED_ABOUT", doctorAbout.getText().toString());
+                    startActivity(intent);
+                    // Dismiss the progress dialog box
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                    // If the download URL retrieval task was not successful, show an error message
                 }
             });
         }

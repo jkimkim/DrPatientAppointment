@@ -10,6 +10,7 @@
     <color name="colorPrimary">#364A7B</color>
     <color name="colorPrimaryDark">#364A7B</color>
     <color name="colorPrimaryLight">#364A7B</color>
+    <color name="colorPrimaryLighter">#54364A7B</color>
     <color name="colorAccent">#FD89F9</color>
     <color name="light">#FFFFFF</color>
     <color name="dark">#000000</color>
