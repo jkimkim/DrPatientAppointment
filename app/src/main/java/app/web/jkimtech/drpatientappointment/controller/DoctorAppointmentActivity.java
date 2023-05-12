@@ -14,6 +14,7 @@ import app.web.jkimtech.drpatientappointment.R;
 import app.web.jkimtech.drpatientappointment.model.adapter.DoctorAppointmentAdapter;
 
 public class DoctorAppointmentActivity extends AppCompatActivity {
+    // TODO: Rename parameter arguments, choose names that match
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference doctorAppointementRef = db.collection("Doctor");
     private DoctorAppointmentAdapter adapter;
