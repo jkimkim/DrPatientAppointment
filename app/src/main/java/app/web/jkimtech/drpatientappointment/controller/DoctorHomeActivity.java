@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import app.web.jkimtech.drpatientappointment.MainActivity;
 import app.web.jkimtech.drpatientappointment.R;
@@ -19,6 +22,9 @@ public class DoctorHomeActivity extends AppCompatActivity {
     Button listPatients;
     Button appointment;
     Button signOutBtn;
+    TextView welcomeText;
+    final String patID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+    DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Doctor").document("" + patID + "");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,12 @@ public class DoctorHomeActivity extends AppCompatActivity {
         signOutBtn = findViewById(R.id.signOutBtn);
         Common.CurrentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         Common.CurrentUserType = "Doctor";
+        welcomeText = findViewById(R.id.doctorName);
+        // set welcome message
+        documentReference.addSnapshotListener(this,(documentSnapshot, e) -> {
+            assert documentSnapshot != null;
+            welcomeText.setText(String.format("Welcome Dr. %s", documentSnapshot.getString("name")));
+        });
         // on click listener for profile button
         profile.setOnClickListener(v -> {
             MainActivity.goToProfile(this);

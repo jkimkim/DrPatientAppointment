@@ -297,6 +297,9 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
         createAccount = findViewById(R.id.CreateAccount);
 
         btnSignUp.setOnClickListener(v -> {
+            ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage("Creating Account...");
+            progressDialog.show();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
             String confirmPass = confirmPassword.getText().toString();
@@ -306,12 +309,14 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
                             .addOnCompleteListener(MainActivity.this, task -> {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
+                                    progressDialog.dismiss();
                                     Log.d("TAG", "createUserWithEmail:success");
                                     android.widget.Toast.makeText(MainActivity.this, "Account Created", android.widget.Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
+                                    progressDialog.dismiss();
                                     Log.w("TAG", "createUserWithEmail:failure", task.getException());
                                     android.widget.Toast.makeText(MainActivity.this, "Authentication failed.",
                                             android.widget.Toast.LENGTH_SHORT).show();
@@ -319,9 +324,11 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
                                 }
                             });
                 }else {
+                    progressDialog.dismiss();
                     android.widget.Toast.makeText(MainActivity.this, "Passwords do not match", android.widget.Toast.LENGTH_SHORT).show();
                 }
             }else {
+                progressDialog.dismiss();
                 android.widget.Toast.makeText(MainActivity.this, "Please fill in all fields", android.widget.Toast.LENGTH_SHORT).show();
             }
         });
@@ -329,6 +336,9 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
         btnLogin.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
+                ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.setMessage("Logging In...");
+                progressDialog.show();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
                 if (!email.isEmpty() && !password.isEmpty()) {
@@ -337,11 +347,13 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     android.util.Log.d("TAG", "signInWithEmail:success");
+                                    progressDialog.dismiss();
                                     android.widget.Toast.makeText(MainActivity.this, "Login Successful", android.widget.Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
+                                    progressDialog.dismiss();
                                     android.util.Log.w("TAG", "signInWithEmail:failure", task.getException());
                                     android.widget.Toast.makeText(MainActivity.this, "Authentication failed.",
                                             android.widget.Toast.LENGTH_SHORT).show();
@@ -349,6 +361,7 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
                                 }
                             });
                 }else {
+                    progressDialog.dismiss();
                     android.widget.Toast.makeText(MainActivity.this, "Please fill in all fields", android.widget.Toast.LENGTH_SHORT).show();
                 }
             }
@@ -508,15 +521,9 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
     @Override
     public void onStart() {
         super.onStart();
-        android.app.ProgressDialog dialog = new android.app.ProgressDialog(this);
-        dialog.setMessage("Loading...");
-        dialog.setCancelable(false);
-        dialog.setInverseBackgroundForced(false);
-        dialog.show();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
-        dialog.dismiss();
     }
 }
 
