@@ -2,7 +2,6 @@ package app.web.jkimtech.drpatientappointment.model.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -119,9 +118,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                         // Create an intent with the action "key_enable_button_next"
                         ApointementInformation apointementInformation = new ApointementInformation();
                         apointementInformation.setAppointmentType(Common.Currentaappointementatype);
-                        apointementInformation.setDoctorId(Common.CurreentDoctor);
+                        apointementInformation.setDoctorId(Common.CurrentDoctor);
                         apointementInformation.setDoctorName(Common.CurrentDoctorName);
-                        apointementInformation.setPath("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+                        apointementInformation.setPath("Doctor/"+Common.CurrentDoctor +"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
                         apointementInformation.setType("full");
                         apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                                 .append(" on ")
@@ -130,7 +129,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
                         DocumentReference bookingDate = FirebaseFirestore.getInstance()
                                 .collection("Doctor")
-                                .document(Common.CurreentDoctor)
+                                .document(Common.CurrentDoctor)
                                 .collection(Common.simpleFormat.format(Common.currentDate.getTime()))
                                 .document(String.valueOf(Common.currentTimeSlot));
 

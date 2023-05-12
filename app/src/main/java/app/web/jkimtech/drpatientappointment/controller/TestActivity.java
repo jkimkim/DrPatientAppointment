@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.shuhart.stepview.StepView;
@@ -103,10 +102,10 @@ public class TestActivity extends AppCompatActivity {
                 Log.e("Spinner", Common.Currentaappointementatype);
 
                 if(step==1){
-                    if(Common.CurreentDoctor != null) {
+                    if(Common.CurrentDoctor != null) {
                         Common.currentTimeSlot = -1;
                         Common.currentDate = Calendar.getInstance();
-                        loadTimeSlotOfDoctor(Common.CurreentDoctor);
+                        loadTimeSlotOfDoctor(Common.CurrentDoctor);
                     }
                 }
                 else if(step == 2){

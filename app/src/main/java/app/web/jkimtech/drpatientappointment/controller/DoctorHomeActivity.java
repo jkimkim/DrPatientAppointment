@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import app.web.jkimtech.drpatientappointment.MainActivity;
 import app.web.jkimtech.drpatientappointment.R;
+import app.web.jkimtech.drpatientappointment.model.Common.Common;
 
 public class DoctorHomeActivity extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class DoctorHomeActivity extends AppCompatActivity {
         listPatients = findViewById(R.id.listPatients);
         appointment = findViewById(R.id.appointment);
         signOutBtn = findViewById(R.id.signOutBtn);
+        Common.CurrentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        Common.CurrentUserType = "Doctor";
         // on click listener for profile button
         profile.setOnClickListener(v -> {
             MainActivity.goToProfile(this);

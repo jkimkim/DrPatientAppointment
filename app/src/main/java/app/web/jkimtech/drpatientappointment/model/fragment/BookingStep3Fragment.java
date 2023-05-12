@@ -57,11 +57,11 @@ public class BookingStep3Fragment extends Fragment {
     void confirmApointement(){
         ApointementInformation apointementInformation = new ApointementInformation();
         apointementInformation.setAppointmentType(Common.Currentaappointementatype);
-        apointementInformation.setDoctorId(Common.CurreentDoctor);
+        apointementInformation.setDoctorId(Common.CurrentDoctor);
         apointementInformation.setDoctorName(Common.CurrentDoctorName);
         apointementInformation.setPatientName(Common.CurrentUserName);
         apointementInformation.setPatientId(Common.CurrentUserid);
-        apointementInformation.setPath("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+        apointementInformation.setPath("Doctor/"+Common.CurrentDoctor +"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
         apointementInformation.setType("Checked");
         apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                 .append("at")
@@ -70,7 +70,7 @@ public class BookingStep3Fragment extends Fragment {
 
         DocumentReference bookingDate = FirebaseFirestore.getInstance()
                 .collection("Doctor")
-                .document(Common.CurreentDoctor)
+                .document(Common.CurrentDoctor)
                 .collection(Common.simpleFormat.format(Common.currentDate.getTime()))
                 .document(String.valueOf(Common.currentTimeSlot));
 
@@ -92,7 +92,7 @@ public class BookingStep3Fragment extends Fragment {
                 }).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        FirebaseFirestore.getInstance().collection("Doctor").document(Common.CurreentDoctor)
+                        FirebaseFirestore.getInstance().collection("Doctor").document(Common.CurrentDoctor)
                                 .collection("apointementrequest").document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
                         FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                                 .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);

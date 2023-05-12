@@ -50,15 +50,32 @@ public class PatientInfoActivity extends AppCompatActivity {
                 specialistList.setSelection(convertBloodToInt(documentSnapshot.getString("bloodType")));
         });
         updateBtn.setOnClickListener(v -> {
-            HashMap<String,Object> map = new HashMap<>();
-            map.put("weight",weightBtn.getText().toString());
-            map.put("height",heightBtn.getText().toString());
-            map.put("bloodType",specialistList.getSelectedItem().toString());
-            Log.e("tag", "onClick: "+specialistList.getTag() );
+            // check if the collection exist or not
+            // if not create it
+            // if yes update it
             FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
-                    .document(patient_email).update(map).addOnSuccessListener(aVoid -> {
-                finish();
+                    .document(patient_email).get().addOnSuccessListener(documentSnapshot -> {
+                if(documentSnapshot.exists()){
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("weight", weightBtn.getText().toString());
+                    map.put("height", heightBtn.getText().toString());
+                    map.put("bloodType", specialistList.getSelectedItem().toString());
+                    FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
+                            .document(patient_email).update(map).addOnSuccessListener(aVoid -> {
                         Toast.makeText(PatientInfoActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                        finish();
+                    });
+                }else{
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("weight", weightBtn.getText().toString());
+                    map.put("height", heightBtn.getText().toString());
+                    map.put("bloodType", specialistList.getSelectedItem().toString());
+                    FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
+                            .document(patient_email).set(map).addOnSuccessListener(aVoid -> {
+                        Toast.makeText(PatientInfoActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                        finish();
+                    });
+                }
             });
         });
         if (Common.CurrentUserType.equals("Patient")){

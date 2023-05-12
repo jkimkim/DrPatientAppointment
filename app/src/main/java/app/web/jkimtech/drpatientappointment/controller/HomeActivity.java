@@ -45,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         appointment2 = findViewById(R.id.appointment2);
         signOutBtn = findViewById(R.id.signOutBtn);
         welcomeUser = findViewById(R.id.welcomeUser);
+        Common.CurrentUserType = "Patient";
         // set welcome message
         documentReference.addSnapshotListener(this,(documentSnapshot, e) -> {
             assert documentSnapshot != null;

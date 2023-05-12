@@ -143,7 +143,7 @@ public class DoctorAdapterFiltered extends RecyclerView.Adapter<DoctorAdapterFil
         doctoreHolder.appointmentBtn.setOnClickListener(v -> {
             // Get the doctor's email address
             doc= doctor.getEmail();
-            Common.CurreentDoctor = doctor.getEmail();
+            Common.CurrentDoctor = doctor.getEmail();
             Common.CurrentDoctorName = doctor.getName();
             Common.CurrentPhone = doctor.getTel();
             openPage(v.getContext());

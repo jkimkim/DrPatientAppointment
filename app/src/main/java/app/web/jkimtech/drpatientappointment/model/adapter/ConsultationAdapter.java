@@ -71,9 +71,9 @@ public class ConsultationAdapter extends FirestoreRecyclerAdapter<Form, Consulta
             doctor_name = itemView.findViewById(R.id.doctor_name);
             type = itemView.findViewById(R.id.text_view_description);
             btn = itemView.findViewById(R.id.see_form_btn);
-            appointment_month = itemView.findViewById(R.id.appointement_month);
-            appointment_day = itemView.findViewById(R.id.appointement_day);
-            appointment_day_name = itemView.findViewById(R.id.appointement_day_name);
+            appointment_month = itemView.findViewById(R.id.appointment_month);
+            appointment_day = itemView.findViewById(R.id.appointment_day);
+            appointment_day_name = itemView.findViewById(R.id.appointment_day_name);
             doctor_view_title = itemView.findViewById(R.id.doctor_view_title);
         }
     }

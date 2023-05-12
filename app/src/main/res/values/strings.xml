@@ -116,4 +116,13 @@
     <string name="decline">Decline</string>
     <string name="_0652167895">0652167895</string>
     <string name="want_to_be_your_patient">Want to be your patient</string>
+    <string name="view_form">View Form</string>
+    <string name="doctor_name">Doctor NAME</string>
+    <string name="appointement_type">Appointement type</string>
+    <string name="_5_00_pm">5:00 PM</string>
+    <string name="doctor">Doctor</string>
+    <string name="timming">Timming</string>
+    <string name="wed">WED</string>
+    <string name="_19">19</string>
+    <string name="july">July</string>
 </resources>
