@@ -133,4 +133,6 @@
     <string name="call_pat">Call your patient</string>
     <string name="chat_pat">Chat with your patient</string>
     <string name="pat_img">Patient profile image</string>
+    <string name="message_icon">message icon</string>
+    <string name="send_message">Send message</string>
 </resources>

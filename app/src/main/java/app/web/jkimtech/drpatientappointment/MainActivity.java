@@ -541,3 +541,5 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
 // NOTE: this project is connected to firebase firestore and firebase storage
 // NOTE: this project is connected to firebase authentication with email and password
 // NOTE: when editing any file, please make sure to change the package name to your own package name.
+
+// TODO: Add terms and conditions
