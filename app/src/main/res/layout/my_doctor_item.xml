@@ -54,7 +54,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="8dp"
             android:background="@drawable/ic_chat_black_24dp"
-            android:contentDescription="@string/call_doc" />
+            android:contentDescription="@string/chat_doc" />
 
         <Button
             android:id="@+id/callBtn"
@@ -64,7 +64,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="60dp"
             android:background="@drawable/ic_call_black_24dp"
-            android:contentDescription="@string/chat_doc" />
+            android:contentDescription="@string/call_doc" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
