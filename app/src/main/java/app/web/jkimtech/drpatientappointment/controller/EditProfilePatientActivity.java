@@ -216,8 +216,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
                         // TODO: Add code here to update the user's profile with the new image
                         // For now we'll just display the image in the ImageView
                     } else {
-                        // If the download URL retrieval task was not successful, show an error message
-                        Toast.makeText(EditProfilePatientActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        // If the download URL retrieval task was not successful, show an error message Toast.makeText(EditProfilePatientActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
