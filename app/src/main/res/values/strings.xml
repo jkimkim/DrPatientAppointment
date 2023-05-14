@@ -130,4 +130,7 @@
     <string name="call_doc">Call your doctor</string>
     <string name="text_doc">Chat with your doctor</string>
     <string name="chat_doc">Chat with your doctor</string>
+    <string name="call_pat">Call your patient</string>
+    <string name="chat_pat">Chat with your patient</string>
+    <string name="pat_img">Patient profile image</string>
 </resources>
