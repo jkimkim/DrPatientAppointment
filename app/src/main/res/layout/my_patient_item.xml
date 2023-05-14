@@ -21,7 +21,8 @@
             android:layout_marginStart="9dp"
             android:layout_marginTop="10dp"
             app:srcCompat="@drawable/ic_anon_user_48dp"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            android:contentDescription="@string/pat_img" />
 
         <TextView
             android:id="@+id/patient_view_title"
@@ -49,22 +50,22 @@
 
         <Button
             android:id="@+id/contact"
-            android:layout_width="28dp"
-            android:layout_height="25dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="365dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_chat_black_24dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_chat_black_24dp"
+            android:contentDescription="@string/chat_pat" />
 
         <Button
             android:id="@+id/callBtn"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="316dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_call_black_24dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/ic_call_black_24dp"
+            android:contentDescription="@string/call_pat" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
