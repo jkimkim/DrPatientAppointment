@@ -525,6 +525,11 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
+    // exit app on back pressed
+    public void onBackPressed() {
+        finishAffinity();
+        finish();
+    }
 }
 
 // Path: app\src\main\java\app\web\jkimtech\drpatientappointment\controller\EditProfilePatientActivity.java
