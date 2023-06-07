@@ -31,9 +31,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import app.web.jkimtech.drpatientappointment.controller.CalenderDoctorActivity;
 import app.web.jkimtech.drpatientappointment.controller.ConfirmedRequestsActivity;
@@ -464,27 +468,58 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        // log in with google
         Log.d("TAG", "firebaseAuthWithGoogle:" + acct.getId());
-
+        // show progress dialog
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Logging in...");
+        progressDialog.show();
+        // get google id token
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        // sign in with credential
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // sign in success, dismiss dialog and start register activity
+                        Log.d("TAG", "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        // if user is signing in for the first time then get and show user info from google account
+                        if (task.getResult().getAdditionalUserInfo().isNewUser()){
+                            // get user email and uid from auth
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+                            // when user is registered store user info in firebase realtime database too
+                            // using hashmap
+                            HashMap<Object, String> hashMap = new HashMap<>();
+                            // put info in hashmap
+                            hashMap.put("email", email);
+                            hashMap.put("uid", uid);
+                            hashMap.put("name", ""); // will add later (e.g. edit profile)
+                            hashMap.put("phone", "");
+                            hashMap.put("image", "");
+                            hashMap.put("cover", "");
+                            hashMap.put("type", "User");
+                            // firebase database instance
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // path to store user data named "Users"
+                            DatabaseReference reference = database.getReference("Users");
+                            // put data within hashmap in database
+                            reference.child(uid).setValue(hashMap);
                         }
-
-                        // ..
+                        // show user email in toast
+                        android.widget.Toast.makeText(MainActivity.this, ""+user.getEmail(), android.widget.Toast.LENGTH_SHORT).show();
+                        // go to profile activity after logged in
+                        updateUI(user);
+                    } else {
+                        // if sign in fails, display a message to the user.
+                        Log.w("TAG", "signInWithCredential:failure", task.getException());
+                        // show error message
+                        android.widget.Toast.makeText(MainActivity.this, "Authentication failed...", android.widget.Toast.LENGTH_SHORT).show();
+                        // update UI
+                        updateUI(null);
                     }
+
+                    // ...
                 });
     }
 
