@@ -52,6 +52,7 @@ import app.web.jkimtech.drpatientappointment.controller.MyPatientsActivity;
 import app.web.jkimtech.drpatientappointment.controller.PatientAppointmentActivity;
 import app.web.jkimtech.drpatientappointment.controller.PatientProfileActivity;
 import app.web.jkimtech.drpatientappointment.controller.SearchActivity;
+import app.web.jkimtech.drpatientappointment.controller.TermsAndConditionsActivity;
 import app.web.jkimtech.drpatientappointment.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText confirm;
     SignInButton signInButton;
     private Button ForgotPass;
+
+    private TextView txtConditions;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference userRef = db.collection("User");
@@ -299,6 +302,12 @@ ForgotPass.setOnClickListener(new android.view.View.OnClickListener() {
         btnSignUp = findViewById(R.id.SignUpBtn);
         btnLogin = findViewById(R.id.loginBtn);
         createAccount = findViewById(R.id.CreateAccount);
+
+        txtConditions = findViewById(R.id.txtConditions);
+        txtConditions.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, TermsAndConditionsActivity.class);
+            startActivity(intent);
+        });
 
         btnSignUp.setOnClickListener(v -> {
             ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);

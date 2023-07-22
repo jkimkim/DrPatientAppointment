@@ -38,6 +38,7 @@ import app.web.jkimtech.drpatientappointment.R;
 import app.web.jkimtech.drpatientappointment.model.Common.Common;
 import app.web.jkimtech.drpatientappointment.model.Interface.ITimeSlotLoadListener;
 import app.web.jkimtech.drpatientappointment.model.TimeSlot;
+import app.web.jkimtech.drpatientappointment.model.adapter.GridSpacingItemDecoration;
 import app.web.jkimtech.drpatientappointment.model.adapter.MyTimeSlotAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -170,6 +171,11 @@ public class BookingStep2Fragment extends Fragment implements ITimeSlotLoadListe
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         recycler_time_slot.setLayoutManager(gridLayoutManager);
         //recycler_time_slot.addItemDecoration(new SpaceI);
+        recycler_time_slot.setItemAnimator(
+                new androidx.recyclerview.widget.DefaultItemAnimator()
+        );
+        // space between recyclerview
+        recycler_time_slot.addItemDecoration(new GridSpacingItemDecoration(3, 8, true));
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.DATE,0);
