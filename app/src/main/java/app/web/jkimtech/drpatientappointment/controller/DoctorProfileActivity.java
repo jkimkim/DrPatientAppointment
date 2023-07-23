@@ -21,7 +21,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import app.web.jkimtech.drpatientappointment.R;
-import io.alterac.blurkit.BlurLayout;
 
 public class DoctorProfileActivity extends AppCompatActivity {
     private MaterialTextView doctorName;
