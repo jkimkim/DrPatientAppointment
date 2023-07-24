@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "693255054320",
-    "project_id": "drpatientappointment",
-    "storage_bucket": "drpatientappointment.appspot.com"
+    "project_number": "141243025255",
+    "project_id": "drappointment-app",
+    "storage_bucket": "drappointment-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:693255054320:android:64c0a71aa9f8f12bce3335",
+        "mobilesdk_app_id": "1:141243025255:android:bc9e08bdc78d608c78d1c2",
         "android_client_info": {
           "package_name": "app.web.jkimtech.drpatientappointment"
         }
       },
       "oauth_client": [
         {
-          "client_id": "693255054320-crm8e2i5f2v7vi9pfijomh6os0eu9m58.apps.googleusercontent.com",
+          "client_id": "141243025255-49bue7mls73f76havk60giv0ukqscsb4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBQT5x2JLw7ahScdAuvb8AJHgS8VWfi4Gc"
+          "current_key": "AIzaSyAUiF9jvd-P3fv8hy2nNNOpyrIFn8iYQgI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "693255054320-crm8e2i5f2v7vi9pfijomh6os0eu9m58.apps.googleusercontent.com",
+              "client_id": "141243025255-49bue7mls73f76havk60giv0ukqscsb4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
